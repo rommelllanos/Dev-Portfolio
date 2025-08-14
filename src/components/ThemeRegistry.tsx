@@ -15,36 +15,58 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#6750A4',
+      main: '#50d8c7',
+      light: '#85eadd',
+      dark: '#00a695',
+      contrastText: '#003731',
     },
     secondary: {
-      main: '#E8DEF8',
+      main: '#b7c3f3',
+      light: '#e9f0ff',
+      dark: '#8692c0',
+      contrastText: '#222f46',
+    },
+    tertiary: {
+      main: '#f3b7c3',
+      light: '#ffe9f0',
+      dark: '#c08692',
+      contrastText: '#46222f',
     },
     background: {
-      default: '#1C1B1F',
-      paper: '#25232A',
+      default: '#1a1c1e',
+      paper: '#2f3033',
+    },
+    text: {
+      primary: '#e2e3e5',
+      secondary: '#b9c8da',
     },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
-    h1: {
-      fontWeight: 700,
-    },
-    h2: {
-      fontWeight: 700,
-    },
-    h3: {
-      fontWeight: 700,
-    },
-    h4: {
-      fontWeight: 500,
-    },
+    h1: { fontWeight: 700 },
+    h2: { fontWeight: 700 },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 500 },
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
+          borderRadius: '20px',
+          transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: '0 4px 20px 0 rgba(0,0,0,0.1)',
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
           borderRadius: '16px',
+          textTransform: 'none',
+          fontWeight: 'bold',
         },
       },
     },

@@ -1,5 +1,6 @@
 'use client';
 import { Typography, Box, Card, CardContent, Button } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
@@ -14,31 +15,64 @@ const projects = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 export default function Projects() {
   return (
-    <Box id="projects" sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Projects
-      </Typography>
-      {projects.map((proj, index) => (
-        <Card key={index} sx={{ mb: 4 }}>
-          <CardContent>
-            <Typography variant="h6">{proj.title}</Typography>
-            <Typography variant="body2" sx={{ mt: 1 }}>{proj.description}</Typography>
-            {proj.link && (
-              <Button
-                variant="contained"
-                color="secondary"
-                href={proj.link}
-                target="_blank"
-                sx={{ mt: 2 }}
-              >
-                View Project
-              </Button>
-            )}
-          </CardContent>
-        </Card>
-      ))}
-    </Box>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <Box id="projects" sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Projects
+        </Typography>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {projects.map((proj, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card sx={{ mb: 4 }}>
+                <CardContent>
+                  <Typography variant="h6">{proj.title}</Typography>
+                  <Typography variant="body2" sx={{ mt: 1 }}>{proj.description}</Typography>
+                  {proj.link && (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      href={proj.link}
+                      target="_blank"
+                      sx={{ mt: 2 }}
+                    >
+                      View Project
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </Box>
+    </motion.div>
   );
 }

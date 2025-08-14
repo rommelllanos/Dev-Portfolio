@@ -1,6 +1,7 @@
 'use client';
 import { Typography, Box, TextField, Button, CircularProgress } from '@mui/material';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -40,50 +41,57 @@ export default function Contact() {
   };
 
   return (
-    <Box id="contact" sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Contact Me
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          required
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Email"
-          name="email"
-          type="email"
-          required
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Message"
-          name="message"
-          required
-          margin="normal"
-          multiline
-          rows={4}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={loading}
-          sx={{ mt: 2 }}
-        >
-          {loading ? <CircularProgress size={24} /> : 'Send Message'}
-        </Button>
-      </form>
-      {status && (
-        <Typography variant="body1" sx={{ mt: 2 }}>
-          {status}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <Box id="contact" sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Contact Me
         </Typography>
-      )}
-    </Box>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            label="Name"
+            name="name"
+            required
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            name="email"
+            type="email"
+            required
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            label="Message"
+            name="message"
+            required
+            margin="normal"
+            multiline
+            rows={4}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={loading}
+            sx={{ mt: 2 }}
+          >
+            {loading ? <CircularProgress size={24} /> : 'Send Message'}
+          </Button>
+        </form>
+        {status && (
+          <Typography variant="body1" sx={{ mt: 2 }}>
+            {status}
+          </Typography>
+        )}
+      </Box>
+    </motion.div>
   );
 }

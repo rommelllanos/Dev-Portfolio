@@ -1,5 +1,6 @@
 'use client';
 import { Typography, Box, Card, CardContent } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const education = [
   {
@@ -25,49 +26,90 @@ const courses = [
     }
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 export default function Education() {
   return (
-    <Box id="education" sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Education
-      </Typography>
-      {education.map((edu, index) => (
-        <Card key={index} sx={{ mb: 2 }}>
-          <CardContent>
-            <Typography variant="h6">{edu.institution}</Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              {edu.degree} | {edu.period}
-            </Typography>
-            <ul>
-              {edu.description.map((item, i) => (
-                <li key={i}>
-                  <Typography variant="body2">{item}</Typography>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      ))}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <Box id="education" sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Education
+        </Typography>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {education.map((edu, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card sx={{ mb: 2 }}>
+                <CardContent>
+                  <Typography variant="h6">{edu.institution}</Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    {edu.degree} | {edu.period}
+                  </Typography>
+                  <ul>
+                    {edu.description.map((item, i) => (
+                      <li key={i}>
+                        <Typography variant="body2">{item}</Typography>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
         <Typography variant="h4" component="h1" gutterBottom sx={{mt: 4}}>
             Courses
         </Typography>
-        {courses.map((course, index) => (
-            <Card key={index} sx={{ mb: 2 }}>
-            <CardContent>
-                <Typography variant="h6">{course.institution}</Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                {course.degree} | {course.period}
-                </Typography>
-                <ul>
-                {course.description.map((item, i) => (
-                    <li key={i}>
-                    <Typography variant="body2">{item}</Typography>
-                    </li>
-                ))}
-                </ul>
-            </CardContent>
-            </Card>
-        ))}
-    </Box>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {courses.map((course, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card sx={{ mb: 2 }}>
+                <CardContent>
+                    <Typography variant="h6">{course.institution}</Typography>
+                    <Typography variant="subtitle1" color="text.secondary">
+                    {course.degree} | {course.period}
+                    </Typography>
+                    <ul>
+                    {course.description.map((item, i) => (
+                        <li key={i}>
+                        <Typography variant="body2">{item}</Typography>
+                        </li>
+                    ))}
+                    </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </Box>
+    </motion.div>
   );
 }

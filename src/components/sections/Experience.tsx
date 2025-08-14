@@ -1,5 +1,6 @@
 'use client';
 import { Typography, Box, Card, CardContent } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const experiences = [
   {
@@ -47,29 +48,62 @@ const experiences = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 export default function Experience() {
   return (
-    <Box id="experience" sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Experience
-      </Typography>
-      {experiences.map((exp, index) => (
-        <Card key={index} sx={{ mb: 4 }}>
-          <CardContent>
-            <Typography variant="h6">{exp.title}</Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              {exp.company} | {exp.period}
-            </Typography>
-            <ul>
-              {exp.description.map((item, i) => (
-                <li key={i}>
-                  <Typography variant="body2">{item}</Typography>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      ))}
-    </Box>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <Box id="experience" sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Experience
+        </Typography>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {experiences.map((exp, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card sx={{ mb: 4 }}>
+                <CardContent>
+                  <Typography variant="h6">{exp.title}</Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    {exp.company} | {exp.period}
+                  </Typography>
+                  <ul>
+                    {exp.description.map((item, i) => (
+                      <li key={i}>
+                        <Typography variant="body2">{item}</Typography>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </Box>
+    </motion.div>
   );
 }
