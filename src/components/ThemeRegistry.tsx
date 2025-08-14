@@ -13,63 +13,67 @@ const roboto = Roboto({
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#50d8c7',
-      light: '#85eadd',
-      dark: '#00a695',
-      contrastText: '#003731',
+      main: '#5C7F67',
+      contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#b7c3f3',
-      light: '#e9f0ff',
-      dark: '#8692c0',
-      contrastText: '#222f46',
+      main: '#596153',
+      contrastText: '#FFFFFF',
     },
     tertiary: {
-      main: '#f3b7c3',
-      light: '#ffe9f0',
-      dark: '#c08692',
-      contrastText: '#46222f',
+      main: '#3A665E',
+      contrastText: '#FFFFFF',
+    },
+    error: {
+      main: '#BA1A1A',
     },
     background: {
-      default: '#1a1c1e',
-      paper: '#2f3033',
+      default: '#FFFBFF',
+      paper: '#F9F8F3',
     },
     text: {
-      primary: '#e2e3e5',
-      secondary: '#b9c8da',
+      primary: '#1C1C1B',
+      secondary: '#494539',
     },
+    action: {
+        active: '#797465' // for outline
+    }
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
-    h1: { fontWeight: 700 },
-    h2: { fontWeight: 700 },
-    h3: { fontWeight: 700 },
-    h4: { fontWeight: 500 },
+    fontFamily: 'Roboto, sans-serif',
+    displayLarge: { fontSize: '57px', fontWeight: 400 },
+    headlineLarge: { fontSize: '32px', fontWeight: 400 },
+    titleLarge: { fontSize: '22px', fontWeight: 500 },
+    bodyLarge: { fontSize: '16px', fontWeight: 400 },
+    labelLarge: { fontSize: '14px', fontWeight: 500 },
+  },
+  shape: {
+    borderRadius: 12, // Medium
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: '20px',
-          transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 4px 20px 0 rgba(0,0,0,0.1)',
-          },
+          borderRadius: '16px', // Large
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '16px',
-          textTransform: 'none',
-          fontWeight: 'bold',
+          borderRadius: '28px', // Extra Large
         },
       },
     },
+    MuiChip: {
+        styleOverrides: {
+            root: {
+                borderRadius: '8px', // Small
+            }
+        }
+    }
   },
 });
 

@@ -1,39 +1,32 @@
 'use client';
 import * as React from 'react';
-import { AppBar, Toolbar, Typography, Container, Box, Button } from '@mui/material';
-import Hero from '../components/sections/Hero';
-import About from '../components/sections/About';
-import Experience from '../components/sections/Experience';
-import Education from '../components/sections/Education';
-import Skills from '../components/sections/Skills';
-import Projects from '../components/sections/Projects';
-import Contact from '../components/sections/Contact';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
+import NavigationRail from '../components/layout/NavigationRail';
+import TopicList from '../components/chat/TopicList';
+import ChatView from '../components/chat/ChatView';
+import BottomNavBar from '../components/layout/BottomNavBar';
 
 export default function HomePage() {
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
+
+  if (isLargeScreen) {
+    return (
+      <Box sx={{ display: 'flex' }}>
+        <NavigationRail />
+        <TopicList />
+        <ChatView />
+      </Box>
+    );
+  }
+
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Rommel Llanos
-          </Typography>
-          <Button color="inherit" href="#about">About</Button>
-          <Button color="inherit" href="#experience">Experience</Button>
-          <Button color="inherit" href="#education">Education</Button>
-          <Button color="inherit" href="#skills">Skills</Button>
-          <Button color="inherit" href="#projects">Projects</Button>
-          <Button color="inherit" href="#contact">Contact</Button>
-        </Toolbar>
-      </AppBar>
-      <Hero />
-      <Container>
-        <About />
-        <Experience />
-        <Education />
-        <Skills />
-        <Projects />
-        <Contact />
-      </Container>
-    </>
+    <Box>
+      {/* For small screens, we might show one component at a time,
+          e.g., show TopicList, and on selecting a topic, navigate to ChatView.
+          For now, we'll just show the ChatView. */}
+      <ChatView />
+      <BottomNavBar />
+    </Box>
   );
 }
