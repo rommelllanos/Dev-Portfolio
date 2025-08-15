@@ -3,77 +3,62 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import NextAppDirEmotionCacheProvider from './EmotionCache';
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 });
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#5C7F67',
-      contrastText: '#FFFFFF',
+      main: '#66FF66',
+      contrastText: '#00390A',
     },
     secondary: {
-      main: '#596153',
-      contrastText: '#FFFFFF',
+      main: '#B9CCB4',
+      contrastText: '#243424',
     },
     tertiary: {
-      main: '#3A665E',
-      contrastText: '#FFFFFF',
+      main: '#A1CED5',
+      contrastText: '#00363C',
     },
     error: {
-      main: '#BA1A1A',
+      main: '#FFB4AB',
     },
     background: {
-      default: '#FFFBFF',
-      paper: '#F9F8F3',
+      default: '#1A1C19',
+      paper: '#1A1C19',
     },
     text: {
-      primary: '#1C1C1B',
-      secondary: '#494539',
+      primary: '#E2E3DE',
+      secondary: '#C2C9BE',
     },
     action: {
-        active: '#797465' // for outline
+        active: '#8C9389' // for outline
     }
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif',
-    displayLarge: { fontSize: '57px', fontWeight: 400 },
-    headlineLarge: { fontSize: '32px', fontWeight: 400 },
+    fontFamily: inter.style.fontFamily,
+    displayLarge: { fontSize: '80px', fontWeight: 700 },
+    headlineLarge: { fontSize: '48px', fontWeight: 600 },
+    headlineMedium: { fontSize: '32px', fontWeight: 600 },
     titleLarge: { fontSize: '22px', fontWeight: 500 },
-    bodyLarge: { fontSize: '16px', fontWeight: 400 },
+    bodyLarge: { fontSize: '16px', fontWeight: 400, lineHeight: '24px' },
     labelLarge: { fontSize: '14px', fontWeight: 500 },
   },
-  shape: {
-    borderRadius: 12, // Medium
-  },
   components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: '16px', // Large
-        },
-      },
-    },
     MuiButton: {
       styleOverrides: {
-        root: {
-          borderRadius: '28px', // Extra Large
-        },
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.shape === 'full' && {
+            borderRadius: theme.shape.borderRadius * 999,
+          }),
+        }),
       },
     },
-    MuiChip: {
-        styleOverrides: {
-            root: {
-                borderRadius: '8px', // Small
-            }
-        }
-    }
   },
 });
 

@@ -1,53 +1,34 @@
 'use client';
-import { Typography, Box, IconButton } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
+import { Box, Typography, Button, Avatar, Grid } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function Hero() {
   return (
-    <Box
-      id="hero"
-      sx={{
-        textAlign: 'center',
-        py: 16,
-        background: 'linear-gradient(45deg, #6750A4 30%, #D4C4E2 90%)',
-        color: 'white',
-        borderRadius: '16px',
-        mx: 2,
-        my: 4,
-      }}
-    >
-      <Typography variant="h2" component="h1" gutterBottom>
-        Rommel Llanos
-      </Typography>
-      <Typography variant="h5" component="h2" gutterBottom>
-        Caracas | rommelllanos@gmail.com | +58 412-3245155
-      </Typography>
-      <Box>
-        <IconButton
-          aria-label="github"
-          color="inherit"
-          href="https://github.com/rommelllanos"
-          target="_blank"
-        >
-          <GitHubIcon />
-        </IconButton>
-        <IconButton
-          aria-label="email"
-          color="inherit"
-          href="mailto:rommelllanos@gmail.com"
-        >
-          <EmailIcon />
-        </IconButton>
-        <IconButton
-          aria-label="phone"
-          color="inherit"
-          href="tel:+584123245155"
-        >
-          <PhoneIcon />
-        </IconButton>
-      </Box>
+    <Box sx={{ py: { xs: 5, md: 10 }, px: { xs: 2, md: 10 } }}>
+      <Grid container spacing={5} alignItems="center">
+        <Grid item xs={12} md={7}>
+          <Typography variant="displayLarge" component="h1" sx={{ color: 'text.primary' }}>
+            Computer Engineer
+          </Typography>
+          <Typography variant="bodyLarge" sx={{ color: 'text.secondary', maxWidth: '500px', my: 3 }}>
+            Hi, I'm Rommel Llanos. A passionate Computer Engineer based in Caracas.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<SendIcon />}
+            sx={{ borderRadius: '9999px', mt: 3 }}
+          >
+            Let's talk
+          </Button>
+        </Grid>
+        <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Avatar sx={{ width: 300, height: 300, bgcolor: 'primary.main' }}>
+            <Typography variant="h1">RL</Typography>
+          </Avatar>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
