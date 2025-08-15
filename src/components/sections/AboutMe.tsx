@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 export default function AboutMe() {
   return (
-    <Box sx={{ py: { xs: 5, md: 10 }, textAlign: 'center' }}>
+    <Box sx={{ py: { xs: 5, md: 10 }, textAlign: 'center', mb: 10 }}>
       <Typography variant="headlineLarge" component="h2">
         About Me
       </Typography>

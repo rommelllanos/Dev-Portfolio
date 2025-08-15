@@ -18,7 +18,7 @@ const projects = [
 
 export default function FeaturedProjects() {
   return (
-    <Box sx={{ py: { xs: 5, md: 10 } }}>
+    <Box sx={{ py: { xs: 5, md: 10 }, mb: 10 }}>
       <Typography variant="headlineLarge" component="h2" sx={{ textAlign: 'center', mb: 5 }}>
         Featured Projects
       </Typography>

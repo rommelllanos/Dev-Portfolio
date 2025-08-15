@@ -4,7 +4,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 export default function Hero() {
   return (
-    <Box sx={{ py: { xs: 5, md: 10 }, px: { xs: 2, md: 10 } }}>
+    <Box sx={{ py: { xs: 5, md: 10 }, px: { xs: 2, md: 10 }, mb: 10 }}>
       <Grid container spacing={5} alignItems="center">
         <Grid item xs={12} md={7}>
           <Typography variant="displayLarge" component="h1" sx={{ color: 'text.primary' }}>

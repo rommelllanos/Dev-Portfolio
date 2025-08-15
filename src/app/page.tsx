@@ -1,5 +1,5 @@
 'use client';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import TopAppBar from '../components/layout/TopAppBar';
 import Hero from '../components/sections/Hero';
 import AboutMe from '../components/sections/AboutMe';
@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <Box>
       <TopAppBar />
-      <Container>
+      <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 5, md: 5 } }}>
         <Hero />
         <AboutMe />
         <FeaturedProjects />
         <GetInTouch />
-      </Container>
+      </Box>
     </Box>
   );
 }
